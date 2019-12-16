@@ -2,6 +2,7 @@ img {
   width: 100%;
 }
 
+
 .landing {
   position: relative;
   background: url('./img/showcase.jpg') no-repeat;
@@ -36,4 +37,27 @@ img {
 
 .form-control::placeholder {
   color: #bbb !important;
+}
+
+
+.nav-link:link {
+  color: #fff;
+  font-size: 1.6rem;
+  line-height: 1.6rem;
+  text-decoration: none;
+}
+.nav-link:visited {
+  color: #fff;
+}
+.nav-link:hover {
+  color: yellow;
+}
+.nav-link:active {
+  color: teal;
+}
+
+.activeRoute {
+  background-color: yellow;
+  border-bottom: 0.4rem solid teal;
+  cursor: not-allowed;
 }

@@ -16,6 +16,7 @@
 .history/*
 
 # dependencies
+/testing
 /node_modules
 package-lock.json
 # System Files
