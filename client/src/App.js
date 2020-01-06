@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Routes from './routers';
+import './App.css';
+import Routes from './components/layout/navRouter';
 class App extends Component {
   render() {
     return (
