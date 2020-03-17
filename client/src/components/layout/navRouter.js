@@ -10,13 +10,14 @@ import store from '../../redux/store';
 //import componant
 import Register from '../users/register';
 import Login from '../users/login';
+import Dashboard from '../dashborad/Dashboard';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from '../../utils/setAuthToken';
 import { setCurrentUser, logoutUser } from '../../authAction/authActions';
-
+import { clearCurrentProfile } from '../../authAction/profileAction';
 
 //check for token
-console.log("localStorage Token === ",localStorage.jwtToken)
+console.log("localStorage Token === ", localStorage.jwtToken)
 if (localStorage.jwtToken) {
     //set auth token headers auth
     setAuthToken(localStorage.jwtToken)
@@ -26,11 +27,12 @@ if (localStorage.jwtToken) {
     store.dispatch(setCurrentUser(decode))
 
     //check for expired token
-    const now  = Date.now()/1000
-    if(decode.exp < now){
+    const now = Date.now() / 1000
+    if (decode.exp < now) {
         //log out the user
         store.dispatch(logoutUser());
-        //TODO: Clear current profile
+        //Clear current profile
+        store.dispatch(clearCurrentProfile());
         //Redirect to login page
         window.location.href = '/login'
     }
@@ -45,6 +47,7 @@ class Routes extends Component {
                         <Navbar />
                         <Route exact path='/' component={Landing} />
                         <Route path="/Comp1" component={Comp1} />
+                        <Route path="/dashboard" component={Dashboard} />
                         <Route path='/register' component={Register} />
                         <Route path='/login' component={Login} />
 

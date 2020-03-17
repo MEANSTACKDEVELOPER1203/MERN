@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import { logoutUser } from '../../authAction/authActions';
-
+import { clearCurrentProfile } from '../../authAction/profileAction';
 class Navbar extends Component {
     onLogoutClick(e) {
         e.preventDefault();
+        this.props.clearCurrentProfile();
         this.props.logoutUser();
     }
     render() {
@@ -15,9 +16,8 @@ class Navbar extends Component {
             <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
                     <Link className="nav-link" onClick={this.onLogoutClick.bind(this)} to="/#"> Log-Out |</Link>
-                    <img src='shorturl.at/btHY5' alt="fav data"  className="img-responsive" />
+                    <img src='shorturl.at/btHY5' alt="fav data" className="img-responsive" />
                 </li>
-
             </ul>
         );
         const gestLinks = (
@@ -30,9 +30,6 @@ class Navbar extends Component {
                 </li>
             </ul>
         );
-
-
-
         return (
             <React.Fragment>
                 <div>
@@ -46,6 +43,9 @@ class Navbar extends Component {
                             </button>
                             <div className="collapse navbar-collapse" id="mobile-nav">
                                 <ul className="navbar-nav mr-auto">
+                                    <li className="nav-item">
+                                        <Link className="nav-link" to="/dashboard">Dashboard | </Link>
+                                    </li>
                                     <li className="nav-item">
                                         <Link className="nav-link" to="/Comp1">Developers1 | </Link>
                                     </li>
@@ -72,7 +72,7 @@ const mapStatesToProps = (state) => ({
     auth: state.auth
 })
 
-export default connect(mapStatesToProps, { logoutUser })(Navbar);
+export default connect(mapStatesToProps, { logoutUser, clearCurrentProfile })(Navbar);
 
 
 
